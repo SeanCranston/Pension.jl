@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		   xmlns="http://efast.gov/2022" 
+		   targetNamespace="http://efast.gov/2022" 
+		   elementFormDefault="qualified" 
+		   attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>Form 5500-EZ 2022</xs:documentation>
+	</xs:annotation>
+	<xs:import schemaLocation="file:///C:/Users/seanc/OneDrive/Desktop/IFile/efastTypes.xsd"/>
+	<!--================================================================-->
+	<!--====================== Form 5500-EZ ============================-->
+	<!--================================================================-->
+	<xs:element name="EZ" type="EZType">
+		<xs:annotation>
+			<xs:documentation>5500 EZ Form</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="EZType">
+		<xs:sequence>
+			<xs:element name="PlanYearBeginDate" type="DateType"/>
+			<xs:element name="PlanYearEndDate" type="DateType"/>
+			<xs:element name="InitialFilingInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="AmendedInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="FinalFilingInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="ShortPlanYrInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="Form5558ApplicationFiledInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="ExtAutomaticInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="ExtSpecialInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="ExtSpecialText" type="String35Type" minOccurs="0"/>
+			<xs:element name="EZForeignPlanInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="EZPenaltyReliefInd" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="AdoptedPlanSECUREAct" type="CheckboxType" minOccurs="0"/>
+			<xs:element name="PlanName" type="PlanNameType"/>
+			<xs:element name="SponsorPlanNum" type="PNType"/>
+			<xs:element name="PlanEffDate" type="DateType" minOccurs="0"/>
+			<xs:element name="Sponsor" type="EZSponsorType"/>
+			<xs:element name="BusinessCode" type="BusinessCodeType" minOccurs="0"/>
+			<xs:element name="Administrator" type="EZAdminType"/>
+			<xs:element name="LastRptEmplrName" type="SponsorNameType" minOccurs="0"/>
+			<xs:element name="LastRptEmplrEIN" type="EINType" minOccurs="0"/>
+			<xs:element name="LastRptPlanName" type="PlanNameType" minOccurs="0"/>
+			<xs:element name="LastRptPlanNum" type="PNType" minOccurs="0"/>
+			<xs:element name="TotPartcpBoyCnt" type="Count8Type" minOccurs="0"/>
+			<xs:element name="TotActPartcpBoyCnt" type="Count8Type" minOccurs="0"/>
+			<xs:element name="TotActRtdSepBenefCnt" type="Count8Type" minOccurs="0"/>
+			<xs:element name="TotActPartcpEoyCnt" type="Count8Type" minOccurs="0"/>
+			<xs:element name="SepPartcpPartlVstdCnt" type="Count8Type" minOccurs="0"/>
+			<xs:element name="TotAssetsBoyAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="TotLiabilitiesBoyAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="NetAssetsBoyAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="TotAssetsEoyAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="TotLiabilitiesEoyAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="NetAssetsEoyAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="EmplrContribIncomeAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="ParticipantContribIncomeAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="OthContribRcvdAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="PensionCodeTable" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TypePensionBnftCode" type="TypePensionBnftCodeType" maxOccurs="20"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PartcpLoansInd" type="YesNoType" minOccurs="0"/>
+			<xs:element name="PartcpLoansEoyAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="UnpaidMinContribCurrYrTotAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="DbPlanFundingReqdInd" type="YesNoType" minOccurs="0"/>
+			<xs:element name="DcPlanFundingReqdInd" type="YesNoType" minOccurs="0"/>
+			<xs:element name="RulingLetterGrantDate" type="DateType" minOccurs="0"/>
+			<xs:element name="Sec412ReqContribAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="EmplrContribPaidAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="FundingDeficiencyAmt" type="USAmountType" minOccurs="0"/>
+			<xs:element name="FundingDeadlineInd" type="YesNoNAType" minOccurs="0"/>
+			<xs:element name="EmplrSignature" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SignedDate" type="TimestampType" minOccurs="0"/>
+						<xs:element name="ManualSignedDate" type="TimestampType" minOccurs="0"/>
+						<xs:element name="SignedName" type="PersonNameType" minOccurs="0"/>
+						<xs:element name="ManualSignedName" type="PersonNameType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

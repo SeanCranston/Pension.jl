@@ -9,7 +9,7 @@ using DelimitedFiles
 using HTTP
 
 AMT = HTTP.get("https://raw.githubusercontent.com/SeanCranston/Pension/main/MortalityTables/23AMT.csv").body
-AMT = readdlm("https://raw.githubusercontent.com/SeanCranston/Pension/main/MortalityTables/23AMT.csv", ','); #"F:\\RPCG\\bleuROBOT\\DataSets\\MortalityTables\\23AMT.csv"
+AMT = readdlm("https://raw.githubusercontent.com/SeanCranston/Pension/main/MortalityTables/23AMT.csv", ','); 
 ult = UltimateMortality(convert(Vector{Float64},AMT[2:121,1]),start_age = 1);
 
 

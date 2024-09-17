@@ -11,6 +11,51 @@ using HTTP
 AMT = HTTP.get("https://raw.githubusercontent.com/SeanCranston/Pension/main/MortalityTables/23AMT.csv").body
 AMT = readdlm("https://raw.githubusercontent.com/SeanCranston/Pension/main/MortalityTables/23AMT.csv", ','); 
 ult = UltimateMortality(convert(Vector{Float64},AMT[2:121,1]),start_age = 1);
+# Base limit lookup for a given year
+function base_415_limit(year::Int)
+    limits = Dict(2022 => 245000, 2023 => 265000)  # Add more years as needed
+    return get(limits, year, 265000)  # Default to $265,000 if year is missing
+end
+
+# Early Retirement Adjustment (if retiring before age 62)
+function early_retirement_adjustment(limit::Float64, age::Int)
+    if age >= 62
+        return limit
+    else
+        reduction_factor = (1 - 0.05) ^ (62 - age)  # 5% reduction per year below 62
+        return limit * reduction_factor
+    end
+end
+
+# Late Retirement Adjustment Using IRS 5% Interest Rate
+function late_retirement_adjustment(limit::Float64, age::Int)
+    if age <= 65
+        return limit
+    else
+        actuarial_factor = (1 + 0.05) ^ (age - 65)  # 5% increase per year after 65
+        return limit * actuarial_factor
+    end
+end
+
+# Main function to compute the 415 limit for defined benefit plans
+function defined_benefit_415_limit(age::Int, year::Int)
+    # Step 1: Get the base limit for the year
+    limit = base_415_limit(year)
+
+    # Step 2: Apply early retirement reduction if applicable
+    limit = early_retirement_adjustment(limit, age)
+
+    # Step 3: Apply late retirement increase if applicable
+    limit = late_retirement_adjustment(limit, age)
+
+    return limit
+end
+
+# Example: Calculate the 415 limit for someone retiring at age 67 in 2023
+age = 67
+year = 2023
+limit = defined_benefit_415_limit(age, year)
+println("The 415 limit for a $age-year-old participant in $year is: \$", limit)
 
 
 # can I make a plan specs structure like how SinlgeLife is make????
